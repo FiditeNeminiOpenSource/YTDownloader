@@ -1,44 +1,68 @@
-YTDownloader
+Sure, here is the text in markdown format that you can copy and paste into the README document on GitHub:
 
-YTDownloader is a Python script that uses the yt_dlp library to download videos from a YouTube playlist.
+## YTDownloader
 
-Prerequisites
+YTDownloader is a Python script that uses the `yt_dlp` library to download videos from a YouTube playlist.
+
+### Prerequisites
+
 Before you can use YTDownloader, you need to have the following software installed on your computer:
 
-Python 3
-pip, the Python package manager
-Installation
+- Python 3
+- `pip`, the Python package manager
+
+### Installation
+
 To install YTDownloader, follow these steps:
 
-Clone the repository by typing the following command:
-bash
-Copy code
-git clone https://github.com/FiditeNeminiOpenSource/YTDownloader.git
-Navigate to the cloned repository by typing the following command:
-bash
-Copy code
-cd YTDownloader
-Create a new venv called YTDownloader by typing the following command:
-Copy code
-python3 -m venv YTDownloader
-Activate the venv by typing the following command:
-bash
-Copy code
-source YTDownloader/bin/activate
-Install the necessary libraries by typing the following command:
-Copy code
-pip install yt-dlp
-Usage
+1. Clone the repository by typing the following command:
+
+   ```
+   git clone https://github.com/FiditeNeminiOpenSource/YTDownloader.git
+   ```
+
+2. Navigate to the cloned repository by typing the following command:
+
+   ```
+   cd YTDownloader
+   ```
+
+3. Create a new `venv` called `YTDownloader` by typing the following command:
+
+   ```
+   python3 -m venv YTDownloader
+   ```
+
+4. Activate the `venv` by typing the following command:
+
+   ```
+   source YTDownloader/bin/activate
+   ```
+
+5. Install the necessary libraries by typing the following command:
+
+   ```
+   pip install yt-dlp
+   ```
+
+### Usage
+
 To use YTDownloader, follow these steps:
 
-Activate the venv by typing the following command:
-bash
-Copy code
-source YTDownloader/bin/activate
-Run the script by typing the following command, replacing <playlist_id> with the ID of the YouTube playlist you want to download:
-php
-Copy code
-python3 downloader.py <playlist_id>
-This will run the script and download the videos in the playlist with the specified ID. The downloaded videos will be saved in a new directory called Downloads in the current directory.
-Contributing
+1. Activate the `venv` by typing the following command:
+
+   ```
+   source YTDownloader/bin/activate
+   ```
+
+2. Run the script by typing the following command, replacing `<playlist_id>` with the ID of the YouTube playlist you want to download:
+
+   ```
+   python3 downloader.py <playlist_id>
+   ```
+
+   This will run the script and download the videos in the playlist with the specified ID. The downloaded videos will be saved in a new directory called `Downloads` in the current directory.
+
+### Contributing
+
 If you would like to contribute to YTDownloader, feel free to submit a pull request or open an issue on the GitHub repository. We welcome any contributions or feedback.
