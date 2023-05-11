@@ -1,75 +1,69 @@
-<h1>YTDownloader</h1>
+README:
 
-<p>YTDownloader is a Python script that uses the <code>yt_dlp</code> library to download videos from a YouTube playlist.</p>
+# YouTube Video/Playlist Downloader
 
-<h2>Prerequisites</h2>
+This is a Python script that can be used to download YouTube videos or 
+playlists. The script uses the `yt_dlp` library, which is a fork of 
+`youtube-dl`. It can handle different types of YouTube URLs and allows the 
+user to choose between downloading a video or a playlist. 
 
-<p>Before you can use YTDownloader, you need to have the following software installed on your computer:</p>
+## Installation
 
-<ul>
-  <li>Python 3</li>
-  <li><code>pip</code>, the Python package manager</li>
-</ul>
+To use this script, you need to have Python 3 installed on your system. 
+You can download Python from the official website: 
+https://www.python.org/downloads/
 
-<h2>Installation</h2>
+You also need to install the `yt_dlp` library. You can install it using 
+pip:
 
-<p>To install YTDownloader, follow these steps:</p>
+```
+pip install yt-dlp
+```
 
-<ol>
-  <li>Clone the repository by typing the following command:</li>
-</ol>
+## Usage
 
-<pre><code>git clone https://github.com/FiditeNeminiOpenSource/YTDownloader.git
-</code></pre>
+To use the script, open a terminal or command prompt and navigate to the 
+directory where the script is located. Then, run the script with the 
+following command:
 
-<ol start="2">
-  <li>Navigate to the cloned repository by typing the following command:</li>
-</ol>
+```
+python youtube_downloader.py <url> --download <type>
+```
 
-<pre><code>cd YTDownloader
-</code></pre>
+Replace `<url>` with the URL of the YouTube video or playlist that you 
+want to download. Replace `<type>` with either `video` or `playlist`, 
+depending on what you want to download. For example, to download a video 
+with the URL `https://www.youtube.com/watch?v=5PS2p1AZzFY`, run the 
+following command:
 
-<ol start="3">
-  <li>Create a new <code>venv</code> called <code>YTDownloader</code> by typing the following command:</li>
-</ol>
+```
+python youtube_downloader.py https://www.youtube.com/watch?v=5PS2p1AZzFY 
+--download video
+```
 
-<pre><code>python3 -m venv YTDownloader
-</code></pre>
+To download a playlist with the URL 
+`https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk`, 
+run the following command:
 
-<ol start="4">
-  <li>Activate the <code>venv</code> by typing the following command:</li>
-</ol>
+```
+python youtube_downloader.py 
+https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk 
+--download playlist
+```
 
-<pre><code>source YTDownloader/bin/activate
-</code></pre>
+If the URL is in the format 
+`https://www.youtube.com/watch?v=5PS2p1AZzFY&list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk&index=4`, 
+the user will be prompted to choose between downloading a video or a 
+playlist.
 
-<ol start="5">
-  <li>Install the necessary libraries by typing the following command:</li>
-</ol>
+Before each video is downloaded, the script checks to see if it already 
+exists in the Downloads folder and skips it if it does. The downloaded 
+videos or playlists are saved in a folder called `Downloads` in the same 
+directory as the script.
 
-<pre><code>pip install yt-dlp
-</code></pre>
+## Conclusion
 
-<h2>Usage</h2>
-
-<p>To use YTDownloader, follow these steps:</p>
-
-<ol>
-  <li>Activate the <code>venv</code> by typing the following command:</li>
-</ol>
-
-<pre><code>source YTDownloader/bin/activate
-</code></pre>
-
-<ol start="2">
-  <li>Run the script by typing the following command, replacing <code>&lt;playlist_id&gt;</code> with the ID of the YouTube playlist you want to download:</li>
-</ol>
-
-<pre><code>python3 downloader.py &lt;playlist_id&gt;
-</code></pre>
-
-<p>This will run the script and download the videos in the playlist with the specified ID. The downloaded videos will be saved in a new directory called <code>Downloads</code> in the current directory.</p>
-
-<h2>Contributing</h2>
-
-<p>If you would like to contribute to YTDownloader, feel free to submit a pull request or open an issue on the GitHub repository. We welcome any contributions or feedback.</p>
+That's it! You should now be able to download YouTube videos and playlists 
+using this Python script. If you encounter any issues or have any 
+questions, feel free to open an issue in the GitHub repository or contact 
+the author directly.
