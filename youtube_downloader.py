@@ -2,6 +2,7 @@ import os
 import argparse
 import yt_dlp
 import ssl
+import textwrap
 from urllib.parse import urlparse, parse_qs
 
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -40,32 +41,31 @@ def download_playlist(playlist_id):
 
     print("Playlist downloaded successfully!")
 
-
 if __name__ == "__main__":
     # Define the help message
-    help_message = '''
+    help_message = textwrap.dedent('''
     
-    This is a Python script that can be used to download YouTube videos or playlists. The script uses the `yt_dlp` library, which is a fork of `youtube-dl`. It can handle different types of YouTube URLs and allows the user to choose between downloading a video or a playlist.
+        This is a Python script that can be used to download YouTube videos or playlists. The script uses the `yt_dlp` library, which is a fork of `youtube-dl`. It can handle different types of YouTube URLs and allows the user to choose between downloading a video or a playlist.
 
-    Usage:
-        python youtube_downloader.py <url> -d=<type>
+        Usage:
+            python youtube_downloader.py <url> -d=<type>
 
-    Arguments:
-        <url>                   The URL of the YouTube video or playlist.
+        Arguments:
+            <url>                   The URL of the YouTube video or playlist.
+        
+        Options:
+            -d=<type>, --download=<type>
+                                    Specify whether to download a video or playlist. Default is 'video'.
+            -h, --help              Show this help message and exit.
+
+        Examples:
+            To download a video:
+                python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" -d=video
+
+            To download a playlist:
+                python youtube_downloader.py "https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" -d=playlist
     
-    Options:
-        -d=<type>, --download=<type>
-                                Specify whether to download a video or playlist. Default is 'video'.
-        -h, --help              Show this help message and exit.
-
-    Examples:
-        To download a video:
-            python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" -d=video
-
-        To download a playlist:
-            python youtube_downloader.py "https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" -d=playlist
-    
-    '''
+    ''')
 
     # Parse the URL and the download type from the command line arguments
     parser = argparse.ArgumentParser(description="Download a YouTube video or playlist.", add_help=False, formatter_class=argparse.RawDescriptionHelpFormatter)
