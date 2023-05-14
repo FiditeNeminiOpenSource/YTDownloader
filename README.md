@@ -1,11 +1,8 @@
-README:
-
-# YouTube Video/Playlist Downloader
 
 This is a Python script that can be used to download YouTube videos or 
 playlists. The script uses the `yt_dlp` library, which is a fork of 
 `youtube-dl`. It can handle different types of YouTube URLs and allows the 
-user to choose between downloading a video or a playlist. 
+user to choose between downloading a video or a playlist.
 
 ## Installation
 
@@ -27,7 +24,7 @@ directory where the script is located. Then, run the script with the
 following command:
 
 ```
-python youtube_downloader.py <url> --download <type>
+python youtube_downloader.py "<url>" --download <type>
 ```
 
 Replace `<url>` with the URL of the YouTube video or playlist that you 
@@ -37,7 +34,7 @@ with the URL `https://www.youtube.com/watch?v=5PS2p1AZzFY`, run the
 following command:
 
 ```
-python youtube_downloader.py https://www.youtube.com/watch?v=5PS2p1AZzFY 
+python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" 
 --download video
 ```
 
@@ -47,7 +44,7 @@ run the following command:
 
 ```
 python youtube_downloader.py 
-https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk 
+"https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" 
 --download playlist
 ```
 
