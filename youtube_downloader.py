@@ -44,6 +44,7 @@ def download_playlist(playlist_id):
 if __name__ == "__main__":
     # Define the help message
     help_message = '''
+    
     This is a Python script that can be used to download YouTube videos or playlists. The script uses the `yt_dlp` library, which is a fork of `youtube-dl`. It can handle different types of YouTube URLs and allows the user to choose between downloading a video or a playlist.
 
     Usage:
@@ -63,6 +64,7 @@ if __name__ == "__main__":
 
         To download a playlist:
             python youtube_downloader.py "https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" -d=playlist
+    
     '''
 
     # Parse the URL and the download type from the command line arguments
