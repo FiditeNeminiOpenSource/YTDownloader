@@ -71,7 +71,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Download a YouTube video or playlist.", add_help=False, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("url", help="The URL of the YouTube video or playlist.")
     parser.add_argument("-d", "--download", metavar="type", help="Specify whether to download a video or playlist. Default is 'video'.", choices=["video", "playlist"], default="video")
-    parser.add_argument("-h", "--help", action="help", default=argparse.SUPPRESS, help="Show this help message and exit.")
+    parser.add_argument("-h", "--help", action="help", default=argparse.SUPPRESS, help=argparse.SUPPRESS)
     args = parser.parse_args()
 
     # Parse the video or playlist ID from the URL
