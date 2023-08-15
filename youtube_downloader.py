@@ -8,7 +8,7 @@ from urllib.parse import urlparse, parse_qs
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-def download_video(video_id):
+def download_content(url, content_type):
     # Create a Downloads folder if it doesn't already exist
     if not os.path.exists("Downloads"):
         os.makedirs("Downloads")
@@ -20,26 +20,9 @@ def download_video(video_id):
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([f"https://www.youtube.com/watch?v={video_id}"])
+        ydl.download([url])
 
-    print("Video downloaded successfully!")
-
-
-def download_playlist(playlist_id):
-    # Create a Downloads folder if it doesn't already exist
-    if not os.path.exists("Downloads"):
-        os.makedirs("Downloads")
-
-    ydl_opts = {
-        'outtmpl': 'Downloads/%(title)s.%(ext)s',
-        'format': 'best',
-        'nocheckcertificate': True
-    }
-
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([f"https://www.youtube.com/playlist?list={playlist_id}"])
-
-    print("Playlist downloaded successfully!")
+    print(f"{content_type.capitalize()} downloaded successfully!")
 
 if __name__ == "__main__":
     # Define the help message
@@ -67,24 +50,18 @@ Have fun!
     # parser.add_argument("-h", "--help", action="help", help=help_message)
     args = parser.parse_args()
 
-    # Parse the video or playlist ID from the URL
-    url_parts = urlparse(args.url)
-    query_params = parse_qs(url_parts.query)
-    video_id = query_params.get('v', [None])[0]
-    playlist_id = query_params.get('list', [None])[0]
-
-    if args.download == "video":
-        if video_id is None:
-            print("Error: Invalid URL. The specified URL is not a valid video URL.")
-            exit()
-        download_video(video_id)
-
-    elif args.download == "playlist":
-        if playlist_id is None:
-            print("Error: Invalid URL. The specified URL is not a valid playlist URL.")
-            exit()
-        download_playlist(playlist_id)
-
-    else:
-        print("Error: Invalid download type. The specified download type must be either 'video' or 'playlist'.")
+    try:
+        url = parse_url(args.url, args.download)
+        download_content(url, args.download)
+    except ValueError as e:
+        print(e)
         exit()
+def parse_url(url, content_type):
+    url_parts = urlparse(url)
+    query_params = parse_qs(url_parts.query)
+    id = query_params.get('v' if content_type == 'video' else 'list', [None])[0]
+
+    if id is None:
+        raise ValueError(f"Invalid URL. The specified URL is not a valid {content_type} URL.")
+
+    return f"https://www.youtube.com/watch?v={id}" if content_type == 'video' else f"https://www.youtube.com/playlist?list={id}"
