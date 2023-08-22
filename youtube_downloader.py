@@ -19,10 +19,14 @@ def download_content(url, content_type):
         'nocheckcertificate': True
     }
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-
-    print(f"{content_type.capitalize()} downloaded successfully!")
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+        print(f"{content_type.capitalize()} downloaded successfully!")
+    except yt_dlp.DownloadError as e:
+        print(f"Failed to download {content_type}: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     # Define the help message
