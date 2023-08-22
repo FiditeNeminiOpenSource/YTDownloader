@@ -35,7 +35,7 @@ Usage:
 Examples:
 =========
 To download a video:
-	python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" -d=vide0
+	python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" -d=video
 
 To download a playlist:
 	python youtube_downloader.py "https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" -d=playlist
