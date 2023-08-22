@@ -28,9 +28,10 @@ def download_content(url, content_type):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-if __name__ == "__main__":
-    # Define the help message
-    help_message = textwrap.dedent('''
+def parse_url(url, content_type):
+    url_parts = urlparse(url)
+    query_params = parse_qs(url_parts.query)
+    id = query_params.get('v' if content_type == 'video' else 'list', [None])[0]
 
 Usage:
 ======
@@ -54,18 +55,17 @@ Have fun!
     # parser.add_argument("-h", "--help", action="help", help=help_message)
     args = parser.parse_args()
 
+if __name__ == "__main__":
+    # Define the help message
+    help_message = textwrap.dedent('''
+
+    if id is None:
+        raise ValueError(f"Invalid URL. The specified URL is not a valid {content_type} URL.")
+
+    return f"https://www.youtube.com/watch?v={id}" if content_type == 'video' else f"https://www.youtube.com/playlist?list={id}"
     try:
         url = parse_url(args.url, args.download)
         download_content(url, args.download)
     except ValueError as e:
         print(e)
         exit()
-def parse_url(url, content_type):
-    url_parts = urlparse(url)
-    query_params = parse_qs(url_parts.query)
-    id = query_params.get('v' if content_type == 'video' else 'list', [None])[0]
-
-    if id is None:
-        raise ValueError(f"Invalid URL. The specified URL is not a valid {content_type} URL.")
-
-    return f"https://www.youtube.com/watch?v={id}" if content_type == 'video' else f"https://www.youtube.com/playlist?list={id}"
