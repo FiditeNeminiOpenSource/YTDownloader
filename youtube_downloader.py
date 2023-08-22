@@ -56,6 +56,20 @@ def parse_url(url, content_type):
 if __name__ == "__main__":
     # Define the help message
     help_message = textwrap.dedent('''
+    Usage:
+    ======
+    python youtube_downloader.py <url> -d=<type>
+
+    Examples:
+    =========
+    To download a video:
+    python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" -d=video
+
+    To download a playlist:
+    python youtube_downloader.py "https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" -d=playlist
+
+    Have fun!
+    ''')
 
     if id is None:
         raise ValueError(f"Invalid URL. The specified URL is not a valid {content_type} URL.")
