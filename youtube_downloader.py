@@ -33,6 +33,11 @@ def parse_url(url, content_type):
     query_params = parse_qs(url_parts.query)
     id = query_params.get('v' if content_type == 'video' else 'list', [None])[0]
 
+    if id is None:
+        raise ValueError(f"Invalid URL. The specified URL is not a valid {content_type} URL.")
+
+    return f"https://www.youtube.com/watch?v={id}" if content_type == 'video' else f"https://www.youtube.com/playlist?list={id}"
+
     # Usage:
     # ======
     # 	python youtube_downloader.py <url> -d=<type>
@@ -54,27 +59,12 @@ def parse_url(url, content_type):
     args = parser.parse_args()
 
 if __name__ == "__main__":
-    # Define the help message
-    help_message = textwrap.dedent('''
-    Usage:
-    ======
-    python youtube_downloader.py <url> -d=<type>
+    # Parse the URL and the download type from the command line arguments
+    parser = argparse.ArgumentParser(description="Download a YouTube video or playlist.", formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("url", help="The URL of the YouTube video or playlist.")
+    parser.add_argument("-d", "--download", metavar="type", help="Specify whether to download a video or playlist. Default is 'video'.", choices=["video", "playlist"], default="video")
+    args = parser.parse_args()
 
-    Examples:
-    =========
-    To download a video:
-    python youtube_downloader.py "https://www.youtube.com/watch?v=5PS2p1AZzFY" -d=video
-
-    To download a playlist:
-    python youtube_downloader.py "https://www.youtube.com/playlist?list=PLXmi76euGSyyq1nw21U1M4tTsM0Zysayk" -d=playlist
-
-    Have fun!
-    ''')
-
-    if id is None:
-        raise ValueError(f"Invalid URL. The specified URL is not a valid {content_type} URL.")
-
-    return f"https://www.youtube.com/watch?v={id}" if content_type == 'video' else f"https://www.youtube.com/playlist?list={id}"
     try:
         url = parse_url(args.url, args.download)
         download_content(url, args.download)
